@@ -6,7 +6,7 @@ go version:        ***go version go1.27.3 linux/amd64*** </br>
 
 
 ## Setup
-[GitHub CodeSpace]
+[GitHub CodeSpaces]
 
 ### Environment 
 ```bash
@@ -22,8 +22,14 @@ curl https://get.ignite.com/cli! | bash
 ### Start
 ```bash
 # Building
+cd zerotrust
 ignite cosmos chain build 
 
 # Starting
 ignite cosmos chain serve
+```
+
+### Help
+```bash
+ignite cosmos chain --help
 ```
