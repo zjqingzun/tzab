@@ -1,0 +1,13 @@
+$ ignite cosmos scaffold message grant-access grant-id subject resource action expires-at:int --module zt --response ok:bool
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+◥ Scaffolding...
+modify proto/zerotrust/zt/v1/tx.proto
+create x/zt/keeper/msg_server_grant_access.go
+modify x/zt/module/autocli.go
+modify x/zt/module/simulation.go
+create x/zt/simulation/grant_access.go
+modify x/zt/types/codec.go
+
+🎉 Created a message `grant-access`.

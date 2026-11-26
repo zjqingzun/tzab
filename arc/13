@@ -1,0 +1,13 @@
+$ ignite cosmos scaffold message record-access subject resource action decision reason payload-hash --module zt --response audit-id:uint
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+◣ Scaffolding...
+modify proto/zerotrust/zt/v1/tx.proto
+create x/zt/keeper/msg_server_record_access.go
+modify x/zt/module/autocli.go
+modify x/zt/module/simulation.go
+create x/zt/simulation/record_access.go
+modify x/zt/types/codec.go
+
+🎉 Created a message `record-access`.

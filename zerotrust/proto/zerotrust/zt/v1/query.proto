@@ -71,6 +71,16 @@ service Query {
   rpc ListAuditRecord(QueryAllAuditRecordRequest) returns (QueryAllAuditRecordResponse) {
     option (google.api.http).get = "/zerotrust/zt/v1/audit_record";
   }
+
+  // CheckAccess Queries a list of CheckAccess items.
+  rpc CheckAccess(QueryCheckAccessRequest) returns (QueryCheckAccessResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/check_access/{subject}/{resource}/{action}";
+  }
+
+  // VerifyChain Queries a list of VerifyChain items.
+  rpc VerifyChain(QueryVerifyChainRequest) returns (QueryVerifyChainResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/verify_chain/{from}/{to}";
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -187,4 +197,31 @@ message QueryAllAuditRecordRequest {
 message QueryAllAuditRecordResponse {
   repeated AuditRecord audit_record = 1 [(gogoproto.nullable) = false];
   cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryCheckAccessRequest defines the QueryCheckAccessRequest message.
+message QueryCheckAccessRequest {
+  string subject = 1;
+  string resource = 2;
+  string action = 3;
+}
+
+// QueryCheckAccessResponse defines the QueryCheckAccessResponse message.
+message QueryCheckAccessResponse {
+  bool allowed = 1;
+  string reason = 2;
+  string grant_id = 3;
+}
+
+// QueryVerifyChainRequest defines the QueryVerifyChainRequest message.
+message QueryVerifyChainRequest {
+  uint64 from = 1;
+  uint64 to = 2;
+}
+
+// QueryVerifyChainResponse defines the QueryVerifyChainResponse message.
+message QueryVerifyChainResponse {
+  bool valid = 1;
+  uint64 broken_at = 2;
+  string last_hash = 3;
 }

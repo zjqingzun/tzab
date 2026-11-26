@@ -1,0 +1,13 @@
+$ ignite cosmos scaffold message register-identity did pubkey role --module zt --response ok:bool
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+
+modify proto/zerotrust/zt/v1/tx.proto
+create x/zt/keeper/msg_server_register_identity.go
+modify x/zt/module/autocli.go
+modify x/zt/module/simulation.go
+create x/zt/simulation/register_identity.go
+modify x/zt/types/codec.go
+
+🎉 Created a message `register-identity`.

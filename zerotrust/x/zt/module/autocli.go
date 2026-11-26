@@ -77,6 +77,18 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Alias:          []string{"show-audit-record"},
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "id"}},
 				},
+				{
+					RpcMethod:      "CheckAccess",
+					Use:            "check-access [subject] [resource] [action]",
+					Short:          "Query check-access",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "subject"}, {ProtoField: "resource"}, {ProtoField: "action"}},
+				},
+				{
+					RpcMethod:      "VerifyChain",
+					Use:            "verify-chain [from] [to]",
+					Short:          "Query verify-chain",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "from"}, {ProtoField: "to"}},
+				},
 			},
 		},
 		Tx: &autocliv1.ServiceCommandDescriptor{
@@ -86,6 +98,42 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				{
 					RpcMethod: "UpdateParams",
 					Skip:      true, // skipped because authority gated
+				},
+				{
+					RpcMethod:      "RegisterIdentity",
+					Use:            "register-identity [did] [pubkey] [role]",
+					Short:          "Send a register-identity tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "did"}, {ProtoField: "pubkey"}, {ProtoField: "role"}},
+				},
+				{
+					RpcMethod:      "RegisterResource",
+					Use:            "register-resource [resource-id] [classification]",
+					Short:          "Send a register-resource tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "resource_id"}, {ProtoField: "classification"}},
+				},
+				{
+					RpcMethod:      "GrantAccess",
+					Use:            "grant-access [grant-id] [subject] [resource] [action] [expires-at]",
+					Short:          "Send a grant-access tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "grant_id"}, {ProtoField: "subject"}, {ProtoField: "resource"}, {ProtoField: "action"}, {ProtoField: "expires_at"}},
+				},
+				{
+					RpcMethod:      "RevokeAccess",
+					Use:            "revoke-access [grant-id] [reason]",
+					Short:          "Send a revoke-access tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "grant_id"}, {ProtoField: "reason"}},
+				},
+				{
+					RpcMethod:      "UpdatePolicy",
+					Use:            "update-policy [policy-id] [version] [content-hash]",
+					Short:          "Send a update-policy tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "policy_id"}, {ProtoField: "version"}, {ProtoField: "content_hash"}},
+				},
+				{
+					RpcMethod:      "RecordAccess",
+					Use:            "record-access [subject] [resource] [action] [decision] [reason] [payload-hash]",
+					Short:          "Send a record-access tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "subject"}, {ProtoField: "resource"}, {ProtoField: "action"}, {ProtoField: "decision"}, {ProtoField: "reason"}, {ProtoField: "payload_hash"}},
 				},
 			},
 		},
