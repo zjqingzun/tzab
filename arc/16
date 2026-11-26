@@ -1,23 +1,98 @@
-$ go list -m all | grep -E "go.opentelemetry.io/(otel|contrib/bridges)"
-go.opentelemetry.io/contrib/bridges/otelslog v0.19.0
-go.opentelemetry.io/contrib/bridges/otelzap v0.12.0
-go.opentelemetry.io/otel v1.47.0
-go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc v0.20.0
-go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp v0.20.0
-go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v1.44.0
-go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.44.0
-go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.44.0
-go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.44.0
-go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.44.0
-go.opentelemetry.io/otel/exporters/prometheus v0.66.0
-go.opentelemetry.io/otel/exporters/stdout/stdoutlog v0.20.0
-go.opentelemetry.io/otel/exporters/stdout/stdoutmetric v1.44.0
-go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.44.0
-go.opentelemetry.io/otel/log v1.47.0
-go.opentelemetry.io/otel/metric v1.47.0
-go.opentelemetry.io/otel/metric/x v0.69.0
-go.opentelemetry.io/otel/sdk v1.47.0
-go.opentelemetry.io/otel/sdk/log v0.20.0
-go.opentelemetry.io/otel/sdk/log/logtest v0.20.0
-go.opentelemetry.io/otel/sdk/metric v1.47.0
-go.opentelemetry.io/otel/trace v1.47.0
+$ go get go.opentelemetry.io/otel/exporters/stdout/stdoutlog@latest \
+       go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc@latest \
+       go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp@latest \
+       go.opentelemetry.io/contrib/bridges/otelslog@latest \
+       go.opentelemetry.io/contrib/otelconf@latest
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp v0.23.0
+go: downloading go.opentelemetry.io/otel/exporters/stdout/stdoutlog v0.23.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc v0.23.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp v0.20.1
+go: downloading go.opentelemetry.io/contrib/otelconf v0.27.0
+go: downloading go.opentelemetry.io/otel/exporters/stdout v0.20.1
+go: downloading go.opentelemetry.io/proto/otlp v1.11.1
+go: downloading google.golang.org/grpc v1.84.0
+go: downloading go.opentelemetry.io/contrib/propagators/autoprop v0.72.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.47.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v1.47.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.47.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.47.0
+go: downloading go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.47.0
+go: downloading go.opentelemetry.io/otel/exporters/stdout/stdoutmetric v1.47.0
+go: downloading go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.47.0
+go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.31.0
+go: downloading go.opentelemetry.io/contrib/propagators/aws v1.47.0
+go: downloading go.opentelemetry.io/contrib/propagators/b3 v1.47.0
+go: downloading go.opentelemetry.io/contrib/propagators/jaeger v1.47.0
+go: downloading go.opentelemetry.io/contrib/propagators/ot v1.47.0
+go: downloading cloud.google.com/go/compute/metadata v0.10.0
+go: downloading github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.34.0
+go: downloading github.com/aws/aws-sdk-go-v2 v1.47.1
+go: downloading github.com/aws/aws-sdk-go-v2/config v1.33.6
+go: downloading github.com/aws/aws-sdk-go-v2/credentials v1.20.6
+go: downloading github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.20.1
+go: downloading github.com/aws/aws-sdk-go-v2/internal/configsources v1.5.4
+go: downloading github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.8.4
+go: downloading github.com/aws/aws-sdk-go-v2/internal/v4a v1.5.4
+go: downloading github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.19
+go: downloading github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.14.4
+go: downloading github.com/aws/aws-sdk-go-v2/service/signin v1.10.1
+go: downloading github.com/aws/aws-sdk-go-v2/service/sso v1.38.1
+go: downloading github.com/aws/aws-sdk-go-v2/service/ssooidc v1.43.1
+go: downloading github.com/aws/aws-sdk-go-v2/service/sts v1.51.1
+go: downloading github.com/aws/smithy-go v1.28.2
+go: downloading github.com/prometheus/client_model v0.6.3
+go: downloading github.com/prometheus/common v0.72.0
+go: downloading github.com/prometheus/procfs v0.22.0
+go: downloading github.com/spiffe/go-spiffe/v2 v2.8.1
+go: downloading go.opentelemetry.io/contrib/detectors/gcp v1.47.0
+go: downloading go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.71.0
+go: downloading go.opentelemetry.io/otel/sdk/log/logtest v0.23.0
+go: downloading golang.org/x/oauth2 v0.37.0
+go: downloading golang.org/x/time v0.16.0
+go: downloading google.golang.org/api v0.278.0
+go: downloading honnef.co/go/tools v0.8.1
+go: upgraded cloud.google.com/go/compute/metadata v0.9.0 => v0.10.0
+go: upgraded github.com/GoogleCloudPlatform/opentelemetry-operations-go/detectors/gcp v1.33.0 => v1.34.0
+go: upgraded github.com/aws/aws-sdk-go-v2 v1.41.7 => v1.47.1
+go: upgraded github.com/aws/aws-sdk-go-v2/config v1.32.17 => v1.33.6
+go: upgraded github.com/aws/aws-sdk-go-v2/credentials v1.19.16 => v1.20.6
+go: upgraded github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.23 => v1.20.1
+go: upgraded github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.23 => v1.5.4
+go: upgraded github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.23 => v2.8.4
+go: upgraded github.com/aws/aws-sdk-go-v2/internal/v4a v1.4.24 => v1.5.4
+go: upgraded github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.9 => v1.13.19
+go: upgraded github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.23 => v1.14.4
+go: upgraded github.com/aws/aws-sdk-go-v2/service/signin v1.0.11 => v1.10.1
+go: upgraded github.com/aws/aws-sdk-go-v2/service/sso v1.30.17 => v1.38.1
+go: upgraded github.com/aws/aws-sdk-go-v2/service/ssooidc v1.35.21 => v1.43.1
+go: upgraded github.com/aws/aws-sdk-go-v2/service/sts v1.42.1 => v1.51.1
+go: upgraded github.com/aws/smithy-go v1.25.1 => v1.28.2
+go: upgraded github.com/grpc-ecosystem/grpc-gateway/v2 v2.29.0 => v2.31.0
+go: upgraded github.com/prometheus/client_model v0.6.2 => v0.6.3
+go: upgraded github.com/prometheus/common v0.70.1 => v0.72.0
+go: upgraded github.com/prometheus/procfs v0.21.1 => v0.22.0
+go: upgraded github.com/spiffe/go-spiffe/v2 v2.7.0 => v2.8.1
+go: upgraded go.opentelemetry.io/contrib/detectors/gcp v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.69.0 => v0.71.0
+go: upgraded go.opentelemetry.io/contrib/otelconf v0.24.0 => v0.27.0
+go: upgraded go.opentelemetry.io/contrib/propagators/autoprop v0.69.0 => v0.72.0
+go: upgraded go.opentelemetry.io/contrib/propagators/aws v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/contrib/propagators/b3 v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/contrib/propagators/jaeger v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/contrib/propagators/ot v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploggrpc v0.20.0 => v0.23.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlplog/otlploghttp v0.20.0 => v0.23.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetricgrpc v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlpmetric/otlpmetrichttp v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/stdout/stdoutlog v0.20.0 => v0.23.0
+go: upgraded go.opentelemetry.io/otel/exporters/stdout/stdoutmetric v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/otel/exporters/stdout/stdouttrace v1.44.0 => v1.47.0
+go: upgraded go.opentelemetry.io/proto/otlp v1.10.0 => v1.11.1
+go: upgraded golang.org/x/oauth2 v0.36.0 => v0.37.0
+go: upgraded golang.org/x/time v0.15.0 => v0.16.0
+go: upgraded google.golang.org/api v0.276.0 => v0.278.0
+go: upgraded google.golang.org/grpc v1.83.1 => v1.84.0
+go: upgraded honnef.co/go/tools v0.6.1 => v0.8.1
