@@ -41,6 +41,7 @@ import (
 	ibckeeper "github.com/cosmos/ibc-go/v11/modules/core/keeper"
 
 	"zerotrust/docs"
+	ztmodulekeeper "zerotrust/x/zt/keeper"
 )
 
 const (
@@ -91,7 +92,8 @@ type App struct {
 	TransferKeeper      *ibctransferkeeper.Keeper
 
 	// simulation manager
-	sm *module.SimulationManager
+	sm       *module.SimulationManager
+	ZtKeeper ztmodulekeeper.Keeper
 }
 
 func init() {
@@ -168,6 +170,7 @@ func New(
 		&app.UpgradeKeeper,
 		&app.AuthzKeeper,
 		&app.ConsensusParamsKeeper,
+		&app.ZtKeeper,
 	); err != nil {
 		panic(err)
 	}

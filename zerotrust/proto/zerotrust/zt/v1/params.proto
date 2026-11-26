@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package zerotrust.zt.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "zerotrust/x/zt/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (amino.name) = "zerotrust/x/zt/Params";
+  option (gogoproto.equal) = true;
+  string admin = 1;
+  string gateway = 2;
+  uint64 max_log_batch = 3;
+}

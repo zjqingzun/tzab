@@ -1,0 +1,21 @@
+$ ignite cosmos scaffold map grant subject:string resource:string action:string \
+  grantor:string status:string expiresAt:int createdAt:int revokedAt:int \
+  --index grantId --module zt --no-message
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+◤ Scaffolding...
+modify proto/zerotrust/zt/v1/genesis.proto
+create proto/zerotrust/zt/v1/grant.proto
+modify proto/zerotrust/zt/v1/query.proto
+modify x/zt/keeper/genesis.go
+modify x/zt/keeper/genesis_test.go
+modify x/zt/keeper/keeper.go
+create x/zt/keeper/query_grant.go
+create x/zt/keeper/query_grant_test.go
+modify x/zt/module/autocli.go
+modify x/zt/types/genesis.go
+modify x/zt/types/genesis_test.go
+create x/zt/types/key_grant.go
+
+🎉 grant added. 

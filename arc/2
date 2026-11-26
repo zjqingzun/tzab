@@ -1,0 +1,13 @@
+$ ignite cosmos scaffold params admin:string gateway:string maxLogBatch:uint --module zt     
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+◥ Scaffolding...
+modify proto/zerotrust/zt/v1/params.proto
+modify x/zt/types/params.go
+
+🎉 New parameters added to the module:
+
+- admin:string
+- gateway:string
+- maxLogBatch:uint

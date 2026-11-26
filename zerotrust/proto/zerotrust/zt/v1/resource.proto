@@ -1,0 +1,11 @@
+syntax = "proto3";
+package zerotrust.zt.v1;
+
+option go_package = "zerotrust/x/zt/types";
+
+// Resource defines the Resource message.
+message Resource {
+  string resource_id = 1;
+  string owner = 2;
+  string classification = 3;
+}

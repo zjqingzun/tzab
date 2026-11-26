@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package zerotrust.zt.v1;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "zerotrust/zt/v1/audit_record.proto";
+import "zerotrust/zt/v1/grant.proto";
+import "zerotrust/zt/v1/identity.proto";
+import "zerotrust/zt/v1/params.proto";
+import "zerotrust/zt/v1/policy.proto";
+import "zerotrust/zt/v1/resource.proto";
+
+option go_package = "zerotrust/x/zt/types";
+
+// GenesisState defines the zt module's genesis state.
+message GenesisState {
+  // params defines all the parameters of the module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+  repeated Identity identity_map = 2 [(gogoproto.nullable) = false];
+  repeated Resource resource_map = 3 [(gogoproto.nullable) = false];
+  repeated Grant grant_map = 4 [(gogoproto.nullable) = false];
+  repeated Policy policy_map = 5 [(gogoproto.nullable) = false];
+  repeated AuditRecord audit_record_list = 6 [(gogoproto.nullable) = false];
+  uint64 audit_record_count = 7;
+}
