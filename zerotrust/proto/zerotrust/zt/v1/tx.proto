@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package zerotrust.zt.v1;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "zerotrust/zt/v1/params.proto";
+
+option go_package = "zerotrust/x/zt/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
+  // RegisterIdentity defines the RegisterIdentity RPC.
+  rpc RegisterIdentity(MsgRegisterIdentity) returns (MsgRegisterIdentityResponse);
+
+  // RegisterResource defines the RegisterResource RPC.
+  rpc RegisterResource(MsgRegisterResource) returns (MsgRegisterResourceResponse);
+
+  // GrantAccess defines the GrantAccess RPC.
+  rpc GrantAccess(MsgGrantAccess) returns (MsgGrantAccessResponse);
+
+  // RevokeAccess defines the RevokeAccess RPC.
+  rpc RevokeAccess(MsgRevokeAccess) returns (MsgRevokeAccessResponse);
+
+  // UpdatePolicy defines the UpdatePolicy RPC.
+  rpc UpdatePolicy(MsgUpdatePolicy) returns (MsgUpdatePolicyResponse);
+
+  // RecordAccess defines the RecordAccess RPC.
+  rpc RecordAccess(MsgRecordAccess) returns (MsgRecordAccessResponse);
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+  option (amino.name) = "zerotrust/x/zt/MsgUpdateParams";
+
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+// MsgRegisterIdentity defines the MsgRegisterIdentity message.
+message MsgRegisterIdentity {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string did = 2;
+  string pubkey = 3;
+  string role = 4;
+}
+
+// MsgRegisterIdentityResponse defines the MsgRegisterIdentityResponse message.
+message MsgRegisterIdentityResponse {
+  bool ok = 1;
+}
+
+// MsgRegisterResource defines the MsgRegisterResource message.
+message MsgRegisterResource {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string resource_id = 2;
+  string classification = 3;
+}
+
+// MsgRegisterResourceResponse defines the MsgRegisterResourceResponse message.
+message MsgRegisterResourceResponse {
+  bool ok = 1;
+}
+
+// MsgGrantAccess defines the MsgGrantAccess message.
+message MsgGrantAccess {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string grant_id = 2;
+  string subject = 3;
+  string resource = 4;
+  string action = 5;
+  int64 expires_at = 6;
+}
+
+// MsgGrantAccessResponse defines the MsgGrantAccessResponse message.
+message MsgGrantAccessResponse {
+  bool ok = 1;
+}
+
+// MsgRevokeAccess defines the MsgRevokeAccess message.
+message MsgRevokeAccess {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string grant_id = 2;
+  string reason = 3;
+}
+
+// MsgRevokeAccessResponse defines the MsgRevokeAccessResponse message.
+message MsgRevokeAccessResponse {
+  bool ok = 1;
+}
+
+// MsgUpdatePolicy defines the MsgUpdatePolicy message.
+message MsgUpdatePolicy {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string policy_id = 2;
+  string version = 3;
+  string content_hash = 4;
+}
+
+// MsgUpdatePolicyResponse defines the MsgUpdatePolicyResponse message.
+message MsgUpdatePolicyResponse {
+  bool ok = 1;
+}
+
+// MsgRecordAccess defines the MsgRecordAccess message.
+message MsgRecordAccess {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string subject = 2;
+  string resource = 3;
+  string action = 4;
+  string decision = 5;
+  string reason = 6;
+  string payload_hash = 7;
+}
+
+// MsgRecordAccessResponse defines the MsgRecordAccessResponse message.
+message MsgRecordAccessResponse {
+  uint64 audit_id = 1;
+}

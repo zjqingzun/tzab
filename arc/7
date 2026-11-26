@@ -1,0 +1,22 @@
+$ ignite cosmos scaffold list auditRecord eventType:string subject:string resource:string action:string \
+  decision:string reason:string actor:string payloadHash:string prevHash:string \
+  recordHash:string blockHeight:int timestamp:int \
+  --module zt --no-message
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+◣ Scaffolding...
+create proto/zerotrust/zt/v1/audit_record.proto
+modify proto/zerotrust/zt/v1/genesis.proto
+modify proto/zerotrust/zt/v1/query.proto
+modify x/zt/keeper/genesis.go
+modify x/zt/keeper/genesis_test.go
+modify x/zt/keeper/keeper.go
+create x/zt/keeper/query_audit_record.go
+create x/zt/keeper/query_audit_record_test.go
+modify x/zt/module/autocli.go
+modify x/zt/types/genesis.go
+modify x/zt/types/genesis_test.go
+modify x/zt/types/keys.go
+
+🎉 auditRecord added. 

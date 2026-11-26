@@ -1,0 +1,33 @@
+$ ignite cosmos scaffold module zt
+
+modify app/app.go
+modify app/app_config.go
+create proto/zerotrust/zt/module/v1/module.proto
+create proto/zerotrust/zt/v1/genesis.proto
+create proto/zerotrust/zt/v1/params.proto
+create proto/zerotrust/zt/v1/query.proto
+create proto/zerotrust/zt/v1/tx.proto
+create x/zt/keeper/genesis.go
+create x/zt/keeper/genesis_test.go
+create x/zt/keeper/keeper.go
+create x/zt/keeper/keeper_test.go
+create x/zt/keeper/msg_server.go
+create x/zt/keeper/msg_update_params.go
+create x/zt/keeper/msg_update_params_test.go
+create x/zt/keeper/query.go
+create x/zt/keeper/query_params.go
+create x/zt/keeper/query_params_test.go
+create x/zt/module/autocli.go
+create x/zt/module/depinject.go
+create x/zt/module/module.go
+create x/zt/module/simulation.go
+create x/zt/types/codec.go
+create x/zt/types/errors.go
+create x/zt/types/expected_keepers.go
+create x/zt/types/genesis.go
+create x/zt/types/genesis_test.go
+create x/zt/types/keys.go
+create x/zt/types/params.go
+create x/zt/types/types.go
+
+🎉 Module created zt.

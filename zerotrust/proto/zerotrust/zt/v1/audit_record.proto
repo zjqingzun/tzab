@@ -1,0 +1,21 @@
+syntax = "proto3";
+package zerotrust.zt.v1;
+
+option go_package = "zerotrust/x/zt/types";
+
+// AuditRecord defines the AuditRecord message.
+message AuditRecord {
+  uint64 id = 1;
+  string event_type = 2;
+  string subject = 3;
+  string resource = 4;
+  string action = 5;
+  string decision = 6;
+  string reason = 7;
+  string actor = 8;
+  string payload_hash = 9;
+  string prev_hash = 10;
+  string record_hash = 11;
+  int64 block_height = 12;
+  int64 timestamp = 13;
+}

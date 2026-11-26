@@ -1,0 +1,13 @@
+syntax = "proto3";
+package zerotrust.zt.v1;
+
+option go_package = "zerotrust/x/zt/types";
+
+// Identity defines the Identity message.
+message Identity {
+  string did = 1;
+  string pubkey = 2;
+  string role = 3;
+  string status = 4;
+  int64 created_at = 5;
+}

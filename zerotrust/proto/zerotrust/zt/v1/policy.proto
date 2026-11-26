@@ -1,0 +1,13 @@
+syntax = "proto3";
+package zerotrust.zt.v1;
+
+option go_package = "zerotrust/x/zt/types";
+
+// Policy defines the Policy message.
+message Policy {
+  string policy_id = 1;
+  string version = 2;
+  string content_hash = 3;
+  string updated_by = 4;
+  int64 updated_at = 5;
+}

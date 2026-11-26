@@ -1,0 +1,11 @@
+$ ignite cosmos scaffold query check-access subject resource action --module zt \
+  --response allowed:bool,reason:string,grant-id:string
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+◥ Scaffolding...
+modify proto/zerotrust/zt/v1/query.proto
+create x/zt/keeper/query_check_access.go
+modify x/zt/module/autocli.go
+
+🎉 Created a query `check-access`.

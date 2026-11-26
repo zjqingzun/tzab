@@ -1,0 +1,11 @@
+$ ignite cosmos scaffold query verify-chain from:uint to:uint --module zt \
+  --response valid:bool,broken-at:uint,last-hash:string
+Your project changes have not been committed.
+To enable reverting to your current state, commit your saved changes.
+Do you want to proceed without committing your saved changes
+
+modify proto/zerotrust/zt/v1/query.proto
+create x/zt/keeper/query_verify_chain.go
+modify x/zt/module/autocli.go
+
+🎉 Created a query `verify-chain`.

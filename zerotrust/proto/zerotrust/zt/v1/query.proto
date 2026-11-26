@@ -1,0 +1,227 @@
+syntax = "proto3";
+
+package zerotrust.zt.v1;
+
+import "amino/amino.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "zerotrust/zt/v1/audit_record.proto";
+import "zerotrust/zt/v1/grant.proto";
+import "zerotrust/zt/v1/identity.proto";
+import "zerotrust/zt/v1/params.proto";
+import "zerotrust/zt/v1/policy.proto";
+import "zerotrust/zt/v1/resource.proto";
+
+option go_package = "zerotrust/x/zt/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/params";
+  }
+
+  // ListIdentity Queries a list of Identity items.
+  rpc GetIdentity(QueryGetIdentityRequest) returns (QueryGetIdentityResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/identity/{did}";
+  }
+
+  // ListIdentity defines the ListIdentity RPC.
+  rpc ListIdentity(QueryAllIdentityRequest) returns (QueryAllIdentityResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/identity";
+  }
+
+  // ListResource Queries a list of Resource items.
+  rpc GetResource(QueryGetResourceRequest) returns (QueryGetResourceResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/resource/{resource_id}";
+  }
+
+  // ListResource defines the ListResource RPC.
+  rpc ListResource(QueryAllResourceRequest) returns (QueryAllResourceResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/resource";
+  }
+
+  // ListGrant Queries a list of Grant items.
+  rpc GetGrant(QueryGetGrantRequest) returns (QueryGetGrantResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/grant/{grant_id}";
+  }
+
+  // ListGrant defines the ListGrant RPC.
+  rpc ListGrant(QueryAllGrantRequest) returns (QueryAllGrantResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/grant";
+  }
+
+  // ListPolicy Queries a list of Policy items.
+  rpc GetPolicy(QueryGetPolicyRequest) returns (QueryGetPolicyResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/policy/{policy_id}";
+  }
+
+  // ListPolicy defines the ListPolicy RPC.
+  rpc ListPolicy(QueryAllPolicyRequest) returns (QueryAllPolicyResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/policy";
+  }
+
+  // ListAuditRecord Queries a list of AuditRecord items.
+  rpc GetAuditRecord(QueryGetAuditRecordRequest) returns (QueryGetAuditRecordResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/audit_record/{id}";
+  }
+
+  // ListAuditRecord defines the ListAuditRecord RPC.
+  rpc ListAuditRecord(QueryAllAuditRecordRequest) returns (QueryAllAuditRecordResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/audit_record";
+  }
+
+  // CheckAccess Queries a list of CheckAccess items.
+  rpc CheckAccess(QueryCheckAccessRequest) returns (QueryCheckAccessResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/check_access/{subject}/{resource}/{action}";
+  }
+
+  // VerifyChain Queries a list of VerifyChain items.
+  rpc VerifyChain(QueryVerifyChainRequest) returns (QueryVerifyChainResponse) {
+    option (google.api.http).get = "/zerotrust/zt/v1/verify_chain/{from}/{to}";
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [
+    (gogoproto.nullable) = false,
+    (amino.dont_omitempty) = true
+  ];
+}
+
+// QueryGetIdentityRequest defines the QueryGetIdentityRequest message.
+message QueryGetIdentityRequest {
+  string did = 1;
+}
+
+// QueryGetIdentityResponse defines the QueryGetIdentityResponse message.
+message QueryGetIdentityResponse {
+  Identity identity = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryAllIdentityRequest defines the QueryAllIdentityRequest message.
+message QueryAllIdentityRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+// QueryAllIdentityResponse defines the QueryAllIdentityResponse message.
+message QueryAllIdentityResponse {
+  repeated Identity identity = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetResourceRequest defines the QueryGetResourceRequest message.
+message QueryGetResourceRequest {
+  string resource_id = 1;
+}
+
+// QueryGetResourceResponse defines the QueryGetResourceResponse message.
+message QueryGetResourceResponse {
+  Resource resource = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryAllResourceRequest defines the QueryAllResourceRequest message.
+message QueryAllResourceRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+// QueryAllResourceResponse defines the QueryAllResourceResponse message.
+message QueryAllResourceResponse {
+  repeated Resource resource = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetGrantRequest defines the QueryGetGrantRequest message.
+message QueryGetGrantRequest {
+  string grant_id = 1;
+}
+
+// QueryGetGrantResponse defines the QueryGetGrantResponse message.
+message QueryGetGrantResponse {
+  Grant grant = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryAllGrantRequest defines the QueryAllGrantRequest message.
+message QueryAllGrantRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+// QueryAllGrantResponse defines the QueryAllGrantResponse message.
+message QueryAllGrantResponse {
+  repeated Grant grant = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetPolicyRequest defines the QueryGetPolicyRequest message.
+message QueryGetPolicyRequest {
+  string policy_id = 1;
+}
+
+// QueryGetPolicyResponse defines the QueryGetPolicyResponse message.
+message QueryGetPolicyResponse {
+  Policy policy = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryAllPolicyRequest defines the QueryAllPolicyRequest message.
+message QueryAllPolicyRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+// QueryAllPolicyResponse defines the QueryAllPolicyResponse message.
+message QueryAllPolicyResponse {
+  repeated Policy policy = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryGetAuditRecordRequest defines the QueryGetAuditRecordRequest message.
+message QueryGetAuditRecordRequest {
+  uint64 id = 1;
+}
+
+// QueryGetAuditRecordResponse defines the QueryGetAuditRecordResponse message.
+message QueryGetAuditRecordResponse {
+  AuditRecord audit_record = 1 [(gogoproto.nullable) = false];
+}
+
+// QueryAllAuditRecordRequest defines the QueryAllAuditRecordRequest message.
+message QueryAllAuditRecordRequest {
+  cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+// QueryAllAuditRecordResponse defines the QueryAllAuditRecordResponse message.
+message QueryAllAuditRecordResponse {
+  repeated AuditRecord audit_record = 1 [(gogoproto.nullable) = false];
+  cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+// QueryCheckAccessRequest defines the QueryCheckAccessRequest message.
+message QueryCheckAccessRequest {
+  string subject = 1;
+  string resource = 2;
+  string action = 3;
+}
+
+// QueryCheckAccessResponse defines the QueryCheckAccessResponse message.
+message QueryCheckAccessResponse {
+  bool allowed = 1;
+  string reason = 2;
+  string grant_id = 3;
+}
+
+// QueryVerifyChainRequest defines the QueryVerifyChainRequest message.
+message QueryVerifyChainRequest {
+  uint64 from = 1;
+  uint64 to = 2;
+}
+
+// QueryVerifyChainResponse defines the QueryVerifyChainResponse message.
+message QueryVerifyChainResponse {
+  bool valid = 1;
+  uint64 broken_at = 2;
+  string last_hash = 3;
+}
