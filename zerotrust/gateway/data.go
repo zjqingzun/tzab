@@ -93,7 +93,6 @@ func getIdentity(did string) (Identity, bool) {
 		return Identity{}, false
 	}
 
-	// Identity là struct, không phải pointer.
 	chainIdentity := res.Identity
 
 	if chainIdentity.Did == "" {
@@ -124,37 +123,38 @@ func getIdentity(did string) (Identity, bool) {
 	return identity, true
 }
 
-// getGrant tạm thời vẫn sử dụng dữ liệu mock.
-// Sẽ thay bằng truy vấn Grant từ Cosmos Chain ở bước tiếp theo.
-func getGrant(subject, resource, action string) (Grant, bool) {
-	grantSubject := os.Getenv("GATEWAY_GRANT_SUBJECT")
-	grantResource := os.Getenv("GATEWAY_GRANT_RESOURCE")
-	grantAction := os.Getenv("GATEWAY_GRANT_ACTION")
-	grantStatus := os.Getenv("GATEWAY_GRANT_STATUS")
-
-	if grantSubject == "" ||
-		grantResource == "" ||
-		grantAction == "" {
-		return Grant{}, false
+// checkAccessOnChain queries access permission from Cosmos Blockchain.
+func checkAccessOnChain(
+	subject, resource, action string,
+) (bool, string) {
+	if queryClient == nil {
+		log.Println("Blockchain query client is not initialized")
+		return false, "blockchain query client unavailable"
 	}
 
-	if grantStatus == "" {
-		grantStatus = "ACTIVE"
+	ctx, cancel := context.WithTimeout(
+		context.Background(),
+		queryTimeout,
+	)
+	defer cancel()
+
+	res, err := queryClient.CheckAccess(
+		ctx,
+		&zttypes.QueryCheckAccessRequest{
+			Subject:  subject,
+			Resource: resource,
+			Action:   action,
+		},
+	)
+
+	if err != nil {
+		log.Printf("Failed to query blockchain access: %v", err)
+		return false, "blockchain access query failed"
 	}
 
-	grant := Grant{
-		Subject:  grantSubject,
-		Resource: grantResource,
-		Action:   grantAction,
-		Status:   strings.ToUpper(grantStatus),
+	if res == nil {
+		return false, "empty blockchain response"
 	}
 
-	if !strings.EqualFold(grant.Subject, subject) ||
-		grant.Resource != resource ||
-		grant.Action != action ||
-		grant.Status != "ACTIVE" {
-		return Grant{}, false
-	}
-
-	return grant, true
+	return res.Allowed, res.Reason
 }
