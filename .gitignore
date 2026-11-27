@@ -3,3 +3,4 @@
 *.dot
 *.log
 *.ign
+config.local.yml
