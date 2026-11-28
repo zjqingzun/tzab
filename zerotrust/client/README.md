@@ -73,7 +73,7 @@ Lưu ý bảo mật:
 Tại thư mục root của project:
 
 ```bash
-ignite chain serve -c config.local.yml
+ignite cosmos chain serve -c config.local.yml
 ```
 
 ## 5. Start Gateway
@@ -121,7 +121,8 @@ public.key
 
 **Lưu ý:** Giữ nguyên hai file key để sử dụng cho các lần kiểm thử tiếp theo. Không chia sẻ Private Key.
 
-## 7. Register Identity
+## 7. Register
+### Identity
 
 Lấy Public Key:
 
@@ -149,6 +150,23 @@ zerotrustd query zt get-identity did:zt:user001
 ```
 
 Identity cần có trạng thái `ACTIVE`.
+
+### Resource
+
+```bash
+zerotrustd tx zt register-resource doc-001 confidential \
+  --from admin \
+  --chain-id zerotrust \
+  --keyring-backend test \
+  --gas auto \
+  --gas-adjustment 1.5 \
+  --yes
+```
+
+Kiểm tra resource
+```bash
+zerotrustd query zt get-resource doc-001
+```
 
 ## 8. Grant Access
 
@@ -209,7 +227,7 @@ Gateway thực hiện:
 Admin thu hồi quyền:
 
 ```bash
-zerotrustd tx zt revoke-access grant-001 \
+zerotrustd tx zt revoke-access grant-001 "manual revocation" \
   --from admin \
   --chain-id zerotrust \
   --keyring-backend test \

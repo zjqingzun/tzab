@@ -54,7 +54,29 @@ func handleAccess(c *gin.Context) {
 		return
 	}
 
-	// 3. Authorization - PDP.
+	// 3. Query Resource metadata from Blockchain.
+	_, exists := getResource(req.Resource)
+	if !exists {
+		reason := "resource not found on blockchain"
+
+		recordAudit(
+			req.DID,
+			req.Resource,
+			req.Action,
+			"DENY",
+			reason,
+			req,
+		)
+
+		c.JSON(http.StatusForbidden, gin.H{
+			"decision": "DENY",
+			"reason":   reason,
+		})
+		return
+	}
+
+
+	// 4. Authorization - PDP.
 	allowed, reason := checkAccess(
 		req.DID,
 		req.Resource,
@@ -66,7 +88,7 @@ func handleAccess(c *gin.Context) {
 		decision = "ALLOW"
 	}
 
-	// 4. Audit.
+	// 5. Audit.
 	recordAudit(
 		req.DID,
 		req.Resource,
@@ -76,7 +98,7 @@ func handleAccess(c *gin.Context) {
 		req,
 	)
 
-	// 5. PEP enforcement.
+	// 6. PEP enforcement.
 	if !allowed {
 		c.JSON(http.StatusForbidden, gin.H{
 			"decision": "DENY",

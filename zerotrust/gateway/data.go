@@ -37,6 +37,12 @@ type Grant struct {
 	Status   string
 }
 
+type Resource struct {
+    ResourceID     string
+    Owner          string
+    Classification string
+}
+
 var (
 	queryClient zttypes.QueryClient
 	grpcConn    *grpc.ClientConn
@@ -157,4 +163,41 @@ func checkAccessOnChain(
 	}
 
 	return res.Allowed, res.Reason
+}
+
+// getResource truy vấn Resource metadata trực tiếp từ Cosmos Chain.
+func getResource(resourceID string) (Resource, bool) {
+	if queryClient == nil {
+		log.Println("Resource query client is not initialized")
+		return Resource{}, false
+	}
+
+	ctx, cancel := context.WithTimeout(
+		context.Background(),
+		queryTimeout,
+	)
+	defer cancel()
+
+	res, err := queryClient.GetResource(
+		ctx,
+		&zttypes.QueryGetResourceRequest{
+			ResourceId: resourceID,
+		},
+	)
+	if err != nil {
+		log.Printf("Failed to query Resource %s: %v", resourceID, err)
+		return Resource{}, false
+	}
+
+	if res == nil || res.Resource.ResourceId == "" {
+		return Resource{}, false
+	}
+
+	resource := Resource{
+		ResourceID:     res.Resource.ResourceId,
+		Owner:          res.Resource.Owner,
+		Classification: res.Resource.Classification,
+	}
+
+	return resource, true
 }
