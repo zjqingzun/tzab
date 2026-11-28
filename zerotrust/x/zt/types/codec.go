@@ -12,6 +12,7 @@ func RegisterInterfaces(registrar codectypes.InterfaceRegistry) {
 	)
 
 	registrar.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgCreatePolicy{},
 		&MsgUpdatePolicy{},
 	)
 

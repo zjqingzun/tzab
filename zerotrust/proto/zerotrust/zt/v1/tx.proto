@@ -113,6 +113,21 @@ message MsgRevokeAccessResponse {
   bool ok = 1;
 }
 
+// MsgCreatePolicy defines the MsgCreatePolicy message.
+message MsgCreatePolicy {
+  option (cosmos.msg.v1.signer) = "creator";
+
+  string creator = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string policy_id = 2;
+  string version = 3;
+  string content_hash = 4;
+}
+
+// MsgCreatePolicyResponse defines the MsgCreatePolicyResponse message.
+message MsgCreatePolicyResponse {
+  bool ok = 1;
+}
+
 // MsgUpdatePolicy defines the MsgUpdatePolicy message.
 message MsgUpdatePolicy {
   option (cosmos.msg.v1.signer) = "creator";

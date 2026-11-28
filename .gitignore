@@ -3,3 +3,5 @@
 *.dot
 *.log
 *.ign
+config.local.yml
+/zerotrust/gateway/gateway

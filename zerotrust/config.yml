@@ -1,6 +1,10 @@
 version: 1
+include:
+  - "./config.local.yml"
 validation: sovereign
 default_denom: stake
+build:
+  main: ./cmd/zerotrustd
 accounts: 
 - name: alice
   coins:
@@ -10,6 +14,12 @@ accounts:
   coins:
   - 10000token
   - 100000000stake
+- name: validator1
+  coins:
+    - 200000000stake
+- name: validator2
+  coins:
+    - 100000000stake
 client:
   openapi:
     path: docs/static/openapi.json
@@ -25,3 +35,10 @@ validators:
   bonded: 200000000stake
 - name: validator2
   bonded: 100000000stake
+genesis:
+  app_state:
+    zt:
+      params:
+        admin: "zt1z2wankacq63x26mrrk6jxpgz08f465rd3v3yqx"
+        gateway: "zt1egtwg6xkz3gcdzue3y0zjcmhueqj3fw6g0c3ru"
+        maxLogBatch: "100"
