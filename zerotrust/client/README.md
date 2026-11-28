@@ -247,3 +247,9 @@ Kết quả mong đợi:
 ```text
 allowed: false
 ``` 
+
+## Kiểm tra các lần access
+
+```bash
+zerotrustd query zt check-access did:zt:user001 doc-001 read
+```
