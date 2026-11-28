@@ -17,10 +17,6 @@ func (q queryServer) VerifyChain(ctx context.Context, req *types.QueryVerifyChai
 		return nil, status.Error(codes.InvalidArgument, "invalid request")
 	}
 
-	if req == nil {
-		return nil, status.Error(codes.InvalidArgument, "invalid request")
-	}
-
 	if req.From > req.To {
 		return nil, status.Error(
 			codes.InvalidArgument,
